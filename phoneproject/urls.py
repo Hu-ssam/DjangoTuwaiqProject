@@ -36,4 +36,5 @@ urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
     path('auth_login/', views.auth_login, name='login'),
     path('auth_register/', views.auth_register, name='register'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
