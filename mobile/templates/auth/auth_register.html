@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>Welcome to Register page</p>
+
+<div class="container">
+    <div class="row d-flex justify-content-center mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    <h3 class="text-center text-white"> تسجيل مستخدم جديد</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="mb-3 text-end">
+                            <label class="form-label">اسم مستخدم</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label">البريد الالكتروني</label>
+                            <input type="text" class="form-control" name="email">
+                        </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control" name="password1">
+                        </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label">تأكيد كلمة المرور</label>
+                            <input type="password" class="form-control" name="password2">
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">
+                                <button type="submit" class="btn btn-primary">تسجيل جديد</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

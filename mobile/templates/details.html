@@ -1,0 +1,41 @@
+
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row d-flex justify-content-around">
+        {% for item in product %}
+        
+            <div class="col-12 col-md-6 col-lg-4 ">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{{item.image.url}}" class="card-img-top" style="height: 250px; object-fit: contain;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="list-unstyled small">
+                                    <li class="pt-2"> <a class="btn btn-primary" href="{% url 'add_to_cart' %}?id={{item.id}}">إضافة الى السلة </a></li>
+                                    <li class="pt-2"> <a class="btn btn-danger" href="{% url 'checkout' %}">شراء الآن </a></li>
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <h5 class="card-title">{{ item.name }}</h5>
+                                <p class = "text-muted"> {{ item.brand }}</p>
+                                <ul class="list-unstyled small">
+                                    <li> {{ item.storage }} السعة</li>
+                                    <li> {{ item.color }} اللون</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <span class="fw-bold text-success">{{ item.price }}رس</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

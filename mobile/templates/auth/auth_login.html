@@ -1,0 +1,44 @@
+
+
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Welcome to Login page</p>
+<div class="container">
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header rounded bg-primary">
+                    <h3 class="text-center text-white">تسجيل الدخول</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="mb-3 text-end">
+                            <label class="form-label">اسم مستخدم</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="mb-3 text-end">
+                            <label class="form-label">كلمة السر</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="row">
+                            <div class="col text-end">
+                                <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end pt-2">
+                                <p>ليس لديك حساب؟ <a href="{% url 'register' %}"> اضغط هنا</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5 text-center">
+    <h1 class="mb-4 text-white text-end p-3 rounded" style="background-color: rgb(117, 44, 254);">مرحبا بك في موقع الهواتف الذكية</h1>
+    <p class="load mb-4 text-end">هنا تجد احدث المواقع في اسعارها وصورها</p>
+    <div class="row mt-5">
+        {% for item in data %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-around">
+                        <div class="col ">
+                            <a href="{% url 'getphone' %}?id={{item.id}}" class="badge bg-danger fs-5"> {{item.name}}</a>
+                        </div>
+                        <div class="col">
+                            <i class="{{item.icon}} text-success" style="font-size: 40px;"></i>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <small class="text-start" style="font-size:12px"> {{item.description}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
