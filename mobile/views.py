@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+import requests
 # Create your views here.
 def welcome(request):
     return HttpResponse("اهلا بكم في دروس جانقو")
@@ -127,5 +128,14 @@ def auth_register(request):
             return redirect('login')
     else:
         form = UserCreationForm(request.POST)
-    
     return render(request, 'auth/auth_register.html', {'form':form})
+def get_remote_products(request):
+    url = "https://fakestoreapi.com/products"
+    response = requests.get(url)
+    data = response.json()
+    return JsonResponse(data, safe=False)
+def get_remote_products_view(request):
+    url = "https://fakestoreapi.com/products"
+    response = requests.get(url)
+    data = response.json()
+    return render(request, 'remoteproducts.html', {'data':data})
