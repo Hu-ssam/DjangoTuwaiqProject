@@ -137,5 +137,5 @@ def get_remote_products(request):
 def get_remote_products_view(request):
     url = "https://fakestoreapi.com/products"
     response = requests.get(url)
-    data = response.json()
+    data = {"name": 10, "age":20}
     return render(request, 'remoteproducts.html', {'data':data})
