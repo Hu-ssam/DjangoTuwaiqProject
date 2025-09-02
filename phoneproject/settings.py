@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mobile',
-    'bootstrap5'
+    'bootstrap5',
+    'converter'
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'phoneproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'product',
@@ -88,12 +89,12 @@ WSGI_APPLICATION = 'phoneproject.wsgi.application'
         'PORT':'5432',
         'HOST':'localhost'
     }
-}"""
-
-
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
+
+
+"""DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+}"""
 
 
 # Password validation

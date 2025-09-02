@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mobile import views
+from converter import views as p1
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
@@ -37,6 +38,7 @@ urlpatterns = [
     path('auth_login/', views.auth_login, name='login'),
     path('auth_register/', views.auth_register, name='register'),
     path('get_remote_products/', views.get_remote_products, name=''),
-    path('remote_products_view/', views.get_remote_products_view, name='')
+    path('remote_products_view/', views.get_remote_products_view, name=''),
+    path('convert_currency/', p1.convert_currency, name='convert_currency'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

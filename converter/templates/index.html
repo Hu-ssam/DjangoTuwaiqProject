@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+ <div class="container">
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header" style="background-color: rgb(46, 46, 167);">
+                    <h1 class="text-white text-center">محول العملات</h1>
+                </div>
+                <div class="card-body" >
+                    <form method="post" action="{% url 'convert_currency'  %}">
+                        {% csrf_token %}
+                        <input type="number" name="amount" class="form-control" placeholder="اخل المبلغ المراد تحويله">
+                        <div class="row">
+                            <div class="col">
+                             <label class="form-label">الى</label>
+                                 <select name="to_currency" class="form-select">
+                                    {% for item in currencies  %}
+                                    <option value="{{item}}">{{item}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col">
+                               <label class="form-label">من</label>
+                              <select name="from_currency" class="form-select">
+                                {% for item in currencies  %}
+                                <option value="{{item}}">{{item}}</option>
+                                {% endfor %}
+                               </select>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col text-center">
+                              <button class="btn btn-primary">تحويل</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <h3>{{amount}} {{from_currency}} = {{converted_amount}} {{to_currency}}</h3>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                             <h2>سجل التحويلات الاخيرة</h2>
+                        </div>
+
+                        <div class="card-body">
+                             <table class="table">
+                        <thead>
+                             <tr>
+                            <th>المبلغ</th>
+                            <th>من</th>
+                            <th>الى</th>
+                            <th>الننتيجة</th>
+                            <th>التاريخ</th>
+                        </tr>
+                        </thead>
+                       <tbody>
+                          {% for record in history %}
+                           <tr>
+                            <td>{{record.amount}}</td>
+                            <td>{{record.from_currency}}</td>
+                            <td>{{record.to_currency}}</td>
+                             <td>{{record.converted_amount}}</td>
+                              <td>{{record.date}}</td>
+                           </tr>
+                          {% endfor %}
+                       </tbody>
+                        
+                    </table>
+                        </div>
+                    </div>
+                  
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+{% endblock  %}
