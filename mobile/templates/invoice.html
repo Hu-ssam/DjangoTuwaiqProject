@@ -6,47 +6,60 @@
     <div class="container">
       <p class="my-5 mx-5" style="font-size: 30px;">شكرا لشرائكم</p>
       <div class="row">
-        {% for item in product %}
+        
         <ul class="list-unstyled">
           <li class="text-black">{{full_name}}</li>
           <li class="text-muted mt-1"><span class="text-black">Invoice</span> #12345</li>
           <li class="text-black mt-1">April 17 2021</li>
         </ul>
         <hr>
+        {% for item in cart %}
         <div class="row">
+          
             <div class="col-xl-10">
                 <div class="row">
                     <div class="col">
+                    <h6>الكمية</h6>
+                    <p>{{item.quantity}}</p>
+                    </div>
+                    <div class="col">
                     <h6>اسم الجهاز</h6>
-                    <p>{{item.name}}</p>
+                    <p>{{item.product.name}}</p>
                     </div>
                     <div class="col">
                     <h6>الشركة</h6>
-                    <p>{{item.brand}}</p>
+                    <p>{{item.product.brand}}</p>
                     </div>
                     <div class="col">
                     <h6>السعة</h6>
-                    <p>{{item.storage}}</p>
+                    <p>{{item.product.storage}}</p>
                     </div>
                     <div class="col">
                     <h6>اللون</h6>
-                    <p>{{item.color}}</p>
+                    <p>{{item.product.color}}</p>
                     </div>
                 </div> 
             </div>  
             <div class="col-xl-2">
-                <input type="hidden" name="" id="p1" value="{{item.price}}">
-                <p class="float-end" id="">${{item.price}}</p>
-            </div> 
+                <input type="hidden" name="price" id="{{item.id}}" value=>
+                <p class="float-end" id="price{{item.id}}">${{item.product.price}}*{{item.quantity}}</p>
+                <script>
+                    var price = {{item.product.price}}*{{item.quantity}};
+                    document.getElementById("price{{item.id}}").innerHTML = "$" + price;
+                   document.getElementById("{{item.id}}").value = price;
+                   console.log(document.getElementById("{{item.id}}").value )
+                 </script>
+            </div>
         </div>
         <hr>
+         {% endfor %}
       <div class="row">
         <div class="col-xl-10">
           <p>Consulting</p>
         </div>
         <div class="col-xl-2">
-            <input type="hidden" name="" id="p2" value="100">
-          <p class="float-end" id="">$100.00
+            <input type="hidden" name="" id="p2" value=100>
+          <p class="float-end" id="">$100
           </p>
         </div>
         
@@ -57,16 +70,32 @@
           <p>Support</p>
         </div>
         <div class="col-xl-2">
-            <input type="hidden" name="" id="p3" value="10">
-          <p class="float-end" id="">$10.00
+            <input type="hidden" name="" id="p3" value=10>
+          <p class="float-end" id="">$10
           </p>
         </div>
       </div>
+       
       <hr style="border: 2px solid black;">
       <div class="row text-black">
-        <div class="col-xl-12">
-            <p class="float-end fw-bold" id="total"> </p>
-          <p class="float-end fw-bold" id="">Total: $ <script>document.getElementById("total").innerHTML = parseInt(document.getElementById("p1").value) + parseInt(document.getElementById("p2").value) + parseInt(document.getElementById("p3").value) </script>
+        <div class="col-xl-10">
+          <p>Total</p>
+        </div>
+        <div class="col-xl-2">
+          <p class="float-end fw-bold " id="total"></p>
+          <p class="float-end fw-bold" id="">
+            
+            <script>
+              const elements = document.getElementsByName("price");
+              var total = 0;
+              console.log(elements);
+              for(let i = 0; i< elements.length; i++){
+                total = total + parseInt(elements[i].value);
+              }
+              console.log(total)
+              document.getElementById("total").innerHTML = parseInt(total) + parseInt(document.getElementById("p2").value) + parseInt(document.getElementById("p3").value);
+              </script>
+              $
           </p>
         </div>
       </div>
@@ -75,7 +104,7 @@
         <a><u class="text-info">View in browser</u></a>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
       </div>
-      {% endfor %}
+     
     </div>
   </div>
 </div>

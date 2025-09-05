@@ -45,17 +45,18 @@
     <header>
         <nav class="navbar text-white" style="background-color: rgb(118, 44, 254);">
             <div class="container">
-                <span> درس جانقو</span>
+                <li class="list-inline-item"><a href="{% url 'logout' %}" id="logStatus">تسجيل الخروج {{is_user_logged}}</a></li>
                 <div>
                     <h1>معسكر طويق</h1>
                 </div>
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <button class="btn btn-outline-success position-relative size-relative">
+                        <a class="btn btn-outline-success position-relative size-relative" href="{% url 'checkout' %}">
                             <i class="bi bi-basket"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><span>({{ cart_total }})</span></span>
-                        </button>
+                        </a>
                     </li>
+                    <li class="list-inline-item"><a href="{% url 'convert_currency' %}">محول العملات</a></li>
                     <li class="list-inline-item"><a href="{% url 'blog' %}">المقالات</a></li>
                     <li class="list-inline-item"><a href="{% url 'aboutus'  %}">حولنا</a></li>
                     <li class="list-inline-item"><a href="{% url 'landpage'  %}">الرئيسية</a></li>
@@ -72,5 +73,16 @@
     <footer>
         <p class="">copy right 2025</p>
     </footer>
+    <script>
+        var isLogged = {{is_user_logged}};
+        if (isLogged == 0){
+            document.getElementById("logStatus").innerHTML= "تسجيل الدخول"
+            document.getElementById("logStatus").setAttribute("href", "{% url 'login' %}" )
+        }
+        else{
+            document.getElementById("logStatus").innerHTML= "تسجيل خروج"
+            document.getElementById("logStatus").setAttribute("href", "{% url 'logout' %}" )
+        }
+    </script>
 </body>
 </html>

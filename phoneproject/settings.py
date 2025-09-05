@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-b47nvl9nz*znd7k%eemdhp66g-5^nd%bxs1gf0g4sn4$r+$fxh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hussam-64ced6d8adeb.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['hussam-tuwaiq-5a5efb7604ad.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 
@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'mobile.context_processors.cart_total',
+                'mobile.context_processors.is_user_logged',
             ],
         },
     },
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'phoneproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'product',
@@ -89,12 +90,12 @@ DATABASES = {
         'PORT':'5432',
         'HOST':'localhost'
     }
-}
-
-
-"""DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }"""
+
+
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+}
 
 
 # Password validation

@@ -15,7 +15,7 @@
                             <div class="col">
                              <label class="form-label">الى</label>
                                  <select name="to_currency" class="form-select">
-                                    {% for item in currencies  %}
+                                    {% for item in currency  %}
                                     <option value="{{item}}">{{item}}</option>
                                     {% endfor %}
                                 </select>
@@ -23,7 +23,7 @@
                             <div class="col">
                                <label class="form-label">من</label>
                               <select name="from_currency" class="form-select">
-                                {% for item in currencies  %}
+                                {% for item in currency  %}
                                 <option value="{{item}}">{{item}}</option>
                                 {% endfor %}
                                </select>

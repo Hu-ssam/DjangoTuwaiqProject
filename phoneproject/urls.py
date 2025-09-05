@@ -37,6 +37,7 @@ urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
     path('auth_login/', views.auth_login, name='login'),
     path('auth_register/', views.auth_register, name='register'),
+    path('auth_logout/', views.auth_logout, name='logout'),
     path('get_remote_products/', views.get_remote_products, name=''),
     path('remote_products_view/', views.get_remote_products_view, name=''),
     path('convert_currency/', p1.convert_currency, name='convert_currency'),

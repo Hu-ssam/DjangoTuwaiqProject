@@ -5,14 +5,14 @@ from .models import ConversationHistory
 def convert_currency(request):
     api_key="a349923ae41cdde6b6e69adb"
     api_url=f"https://v6.exchangerate-api.com/v6/{api_key}/latest/USD"
-
+    print(request.user.id)
     cuurencies=['USD','EUR','SAR','GPB','JPY','CAD']
-
+   
     if request.method=='POST':
         amount=float(request.POST.get('amount'))
         from_currency=request.POST.get('from_currency')
         to_currency=request.POST.get('to_currency')
-
+        print(ConversationHistory.objects.filter(user_id = request.user.id).order_by('-date')[:5])
         response=requests.get(api_url) 
         data=response.json()
         response.status_code
@@ -30,7 +30,9 @@ def convert_currency(request):
                     amount=amount,
                     from_currency=from_currency,
                     to_currency=to_currency,
-                    converted_amount=converted_amount
+                    converted_amount=converted_amount,
+                    user_id = request.user.id
+
                 )
 
 
@@ -40,14 +42,14 @@ def convert_currency(request):
                     'from_currency':from_currency,
                     'to_currency':to_currency,
                     'converted_amount':round(converted_amount,2),
-                    'history':ConversationHistory.objects.all().order_by('-date')[:5]
+                    'history':ConversationHistory.objects.filter(user_id = request.user.id).order_by('-date')[:5]
                 }
         
         else:
             
             context={
                 
-                'currencies':cuurencies,
+                'currency':cuurencies,
                 'error':'فشل جلب اسعار الصرف نرجو المحاولة لاحقاً'
             
             }
@@ -56,8 +58,10 @@ def convert_currency(request):
     else:
           context={
                 
-                'currencies':cuurencies,
-                'history':ConversationHistory.objects.all().order_by('-date')[:5]
+                'currency':cuurencies,
+                'history':ConversationHistory.objects.filter(user_id = request.user.id).order_by('-date')[:5]
             
             }
+    if request.user.id is None:
+         context['history'] = None
     return render(request,'/Users/hussamalasmari/Desktop/Django Course/deploymentprojHussam/converter/templates/index.html',context)
