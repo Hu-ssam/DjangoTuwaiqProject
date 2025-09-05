@@ -64,4 +64,4 @@ def convert_currency(request):
             }
     if request.user.id is None:
          context['history'] = None
-    return render(request,'/Users/hussamalasmari/Desktop/Django Course/deploymentprojHussam/converter/templates/index.html',context)
+    return render(request,'templates/index.html',context)
