@@ -64,4 +64,4 @@ def convert_currency(request):
             }
     if request.user.id is None:
          context['history'] = None
-    return render(request,'converter/templates/index.html',context)
+    return render(request,'index.html',context)
